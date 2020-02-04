@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Cidade implements Serializable{
 
@@ -23,6 +25,7 @@ public class Cidade implements Serializable{
 	
 	
 	// associacao. como so tem um estado nao faz a lista e sim associacao so com a classe.
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="estado_id")// nome da chave estrangeira do estado
 	private Estado estado;
