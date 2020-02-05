@@ -4,19 +4,22 @@ import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ItemPedido {
 	private static final long serialVersionUID = 1L;
-	
+
+	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
-	
+
 	private Double desconto;
 	private Integer quantidade;
 	private Double preco;
-	
+
 	public ItemPedido() {
-		
+
 	}
 
 	public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
@@ -27,11 +30,12 @@ public class ItemPedido {
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
-	
+
+	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
-	
+
 	public Produto getProduto() {
 		return id.getProduto();
 	}
@@ -92,6 +96,5 @@ public class ItemPedido {
 			return false;
 		return true;
 	}
-	
-	
+
 }
