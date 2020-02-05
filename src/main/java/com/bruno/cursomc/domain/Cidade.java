@@ -9,34 +9,30 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-public class Cidade implements Serializable{
+public class Cidade implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
-	
-	// associacao. como so tem um estado nao faz a lista e sim associacao so com a classe.
-	@JsonManagedReference
+
+	// associacao. como so tem um estado nao faz a lista e sim associacao so com a
+	// classe.
+
 	@ManyToOne
-	@JoinColumn(name="estado_id")// nome da chave estrangeira do estado
+	@JoinColumn(name = "estado_id") // nome da chave estrangeira do estado
 	private Estado estado;
-	
+
 	public Cidade() {
 	}
-	
+
 	public Cidade(Integer id, String nome, Estado estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.estado = estado;
 	}
 
 	public Integer getId() {
@@ -53,6 +49,15 @@ public class Cidade implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	@Override
@@ -79,8 +84,5 @@ public class Cidade implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 }
